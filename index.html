@@ -1186,7 +1186,7 @@
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
-                <span id="cartTotal">₹0.00</span>
+                <span id="cartTotal">Rs.0.00</span>
             </div>
             <button class="btn btn-primary" onclick="checkout()" style="width: 100%;">
                 <i class="fas fa-lock"></i> Checkout
@@ -1585,9 +1585,9 @@
                                 <i class="fas fa-leaf"></i> ${product.materials || 'Premium materials'}
                             </div>
                             <div class="product-price">
-                                <span>₹${finalPrice.toFixed(2)}</span>
+                                <span>Rs.${finalPrice.toFixed(2)}</span>
                                 ${product.discount > 0 ? 
-                                    `<span class="original-price">₹${product.price.toFixed(2)}</span>
+                                    `<span class="original-price">Rs.${product.price.toFixed(2)}</span>
                                      <span class="discount-badge">-${product.discount}%</span>` : ''}
                             </div>
                             <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${product.id}')">
@@ -1768,7 +1768,7 @@
                             </div>
                             <div class="stat-content">
                                 <h4>Total Spent</h4>
-                                <p>₹${totalSpent.toFixed(2)}</p>
+                                <p>Rs.${totalSpent.toFixed(2)}</p>
                             </div>
                         </div>
                     </div>
@@ -1893,13 +1893,13 @@
                             ${order.items.map(item => `
                                 <div class="order-item">
                                     <span>${item.name} x${item.quantity}</span>
-                                    <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                                    <span>Rs.${(item.price * item.quantity).toFixed(2)}</span>
                                 </div>
                             `).join('')}
                         </div>
                         <div class="order-total">
                             <span>Total Amount:</span>
-                            <span>₹${order.total.toFixed(2)}</span>
+                            <span>Rs.${order.total.toFixed(2)}</span>
                         </div>
                         <div class="order-actions">
                             <button class="btn btn-small btn-secondary" onclick="viewOrderDetails('${order.id}')">
@@ -1963,14 +1963,14 @@
                                 <p style="font-weight: 600;">${item.name}</p>
                                 <p style="font-size: 0.9rem; color: var(--text-light);">Qty: ${item.quantity}</p>
                             </div>
-                            <p style="font-weight: 600;">₹${(item.price * item.quantity).toFixed(2)}</p>
+                            <p style="font-weight: 600;">Rs.${(item.price * item.quantity).toFixed(2)}</p>
                         </div>
                     `).join('')}
 
                     <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--primary);">
                         <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 600;">
                             <span>Total:</span>
-                            <span style="color: var(--primary);">₹${order.total.toFixed(2)}</span>
+                            <span style="color: var(--primary);">Rs.${order.total.toFixed(2)}</span>
                         </div>
                     </div>
 
@@ -2275,9 +2275,9 @@
                     
                     <div style="display: flex; align-items: center; justify-content: space-between;">
                         <div>
-                            <span style="font-size: 2rem; font-weight: bold; color: var(--primary);">₹${finalPrice.toFixed(2)}</span>
+                            <span style="font-size: 2rem; font-weight: bold; color: var(--primary);">Rs.${finalPrice.toFixed(2)}</span>
                             ${product.discount > 0 ? 
-                                `<span style="margin-left: 1rem; color: var(--text-light); text-decoration: line-through;">₹${product.price.toFixed(2)}</span>` : ''}
+                                `<span style="margin-left: 1rem; color: var(--text-light); text-decoration: line-through;">Rs.${product.price.toFixed(2)}</span>` : ''}
                         </div>
                         <button class="btn btn-primary" onclick="addToCart('${product.id}'); closeModal();">
                             <i class="fas fa-shopping-cart"></i> Add to Cart
@@ -2333,7 +2333,7 @@
                         <p style="margin-top: 1rem;">Your cart is empty</p>
                     </div>
                 `;
-                cartTotal.textContent = '₹0.00';
+                cartTotal.textContent = 'Rs.0.00';
             } else {
                 let total = 0;
                 cartItems.innerHTML = '';
@@ -2347,7 +2347,7 @@
                                  class="cart-item-image">
                             <div class="cart-item-details">
                                 <div class="cart-item-name">${item.name}</div>
-                                <div class="cart-item-price">₹${item.price.toFixed(2)} x ${item.quantity}</div>
+                                <div class="cart-item-price">Rs.${item.price.toFixed(2)} x ${item.quantity}</div>
                                 <div class="cart-item-quantity">
                                     <button class="quantity-btn" onclick="updateCartQuantity(${index}, -1)">-</button>
                                     <span>${item.quantity}</span>
@@ -2359,7 +2359,7 @@
                     `;
                 });
                 
-                cartTotal.textContent = `₹${total.toFixed(2)}`;
+                cartTotal.textContent = `Rs.${total.toFixed(2)}`;
             }
 
             sidebar.classList.add('active');
@@ -2416,13 +2416,13 @@
                     ${cart.map(item => `
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>${item.name} x${item.quantity}</span>
-                            <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                            <span>Rs.${(item.price * item.quantity).toFixed(2)}</span>
                         </div>
                     `).join('')}
                     
                     <div style="display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid var(--primary);">
                         <strong>Total:</strong>
-                        <strong style="color: var(--primary);">₹${total.toFixed(2)}</strong>
+                        <strong style="color: var(--primary);">Rs.${total.toFixed(2)}</strong>
                     </div>
                     
                     <p style="margin: 1.5rem 0; color: var(--text-light);">

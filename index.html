@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Moreen Petals • Handcrafted Flower Art</title>
+    <title>Morrn Petals • Handcrafted Flower Art</title>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -661,6 +661,24 @@
             }
         }
 
+        /* Demo Mode Banner */
+        .demo-banner {
+            background: var(--accent3);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 0.5rem;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            font-size: 0.9rem;
+        }
+
+        .demo-banner i {
+            margin-right: 0.5rem;
+        }
+
         /* Mobile Responsive Styles */
         @media (max-width: 1024px) {
             .hero-section {
@@ -763,6 +781,12 @@
                 right: 1rem;
                 bottom: 1rem;
             }
+
+            .demo-banner {
+                top: 120px;
+                font-size: 0.8rem;
+                padding: 0.3rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -810,6 +834,12 @@
     </style>
 </head>
 <body>
+    <!-- Demo Mode Banner (will be shown if Firebase is not configured) -->
+    <div class="demo-banner" id="demoBanner" style="display: none;">
+        <i class="fas fa-info-circle"></i>
+        Demo Mode: Using local storage. <a href="#" onclick="showFirebaseSetup()" style="color: var(--primary); text-decoration: underline;">Click here</a> to setup Firebase Authentication.
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
@@ -817,7 +847,7 @@
                 <i class="fas fa-flower"></i>
             </div>
             <div class="logo-text">
-                Moreen<span>Petals</span>
+                Morrn<span>Petals</span>
             </div>
         </div>
         <div class="nav-links">
@@ -874,7 +904,7 @@
     <!-- Toast Container -->
     <div id="toastContainer"></div>
 
-    <!-- Firebase SDK (Correct Version) -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
@@ -891,60 +921,73 @@
             measurementId: "G-7CYFTLWRZ2"
         };
 
-        // Initialize Firebase with error handling
-        let app, db, auth;
-        
-        try {
-            // Initialize Firebase
-            app = firebase.initializeApp(firebaseConfig);
-            db = firebase.firestore();
-            auth = firebase.auth();
-            
-            // Enable offline persistence for better mobile experience
-            db.enablePersistence()
-                .then(() => {
-                    console.log('Offline persistence enabled');
-                })
-                .catch((err) => {
-                    if (err.code == 'failed-precondition') {
-                        console.log('Persistence failed: Multiple tabs open');
-                    } else if (err.code == 'unimplemented') {
-                        console.log('Persistence not supported');
-                    }
-                });
-                
-            console.log('Firebase initialized successfully');
-        } catch (error) {
-            console.error('Firebase initialization error:', error);
-            // Don't show error toast here, let the app work offline
-        }
-
         // Global Variables
         let currentUser = null;
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let products = [];
+        let isFirebaseAvailable = false;
+        let db = null;
+        let auth = null;
 
         // Initialize App
         window.addEventListener('load', async () => {
+            await initializeFirebase();
             updateCartCount();
-            checkAuthState();
             await loadProducts();
             showHome();
         });
 
-        // Check Auth State
-        function checkAuthState() {
-            if (!auth) {
-                console.log('Auth not available');
-                return;
-            }
-            
-            auth.onAuthStateChanged((user) => {
-                currentUser = user;
-                if (user) {
-                    console.log('User logged in:', user.email);
+        // Initialize Firebase with error handling
+        async function initializeFirebase() {
+            try {
+                // Initialize Firebase
+                const app = firebase.initializeApp(firebaseConfig);
+                auth = firebase.auth();
+                db = firebase.firestore();
+                
+                // Test authentication by checking if it's enabled
+                await auth.fetchSignInMethodsForEmail('test@test.com');
+                
+                isFirebaseAvailable = true;
+                console.log('Firebase initialized successfully');
+                
+                // Enable offline persistence
+                try {
+                    await db.enablePersistence();
+                } catch (err) {
+                    console.log('Persistence error:', err);
                 }
-            });
+                
+                // Check auth state
+                auth.onAuthStateChanged((user) => {
+                    currentUser = user;
+                    if (user) {
+                        console.log('User logged in:', user.email);
+                    }
+                });
+                
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+                isFirebaseAvailable = false;
+                
+                // Show demo mode banner
+                document.getElementById('demoBanner').style.display = 'block';
+                
+                // Use local storage for users
+                initializeLocalAuth();
+            }
+        }
+
+        // Initialize local authentication (demo mode)
+        function initializeLocalAuth() {
+            // Load users from localStorage
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Check for saved current user
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+            }
         }
 
         // Load Products
@@ -961,7 +1004,7 @@
             localStorage.setItem('products', JSON.stringify(products));
             
             // Try to load from Firebase if available
-            if (db) {
+            if (isFirebaseAvailable && db) {
                 try {
                     const querySnapshot = await db.collection("products").get();
                     if (!querySnapshot.empty) {
@@ -1043,6 +1086,43 @@
                 }
             ];
         }
+
+        // Show Firebase Setup Instructions
+        window.showFirebaseSetup = function() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2><i class="fas fa-fire"></i> Enable Firebase Authentication</h2>
+                    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Steps to enable authentication:</h3>
+                    
+                    <ol style="margin-left: 1.5rem; line-height: 2;">
+                        <li>Go to <a href="https://console.firebase.google.com" target="_blank">Firebase Console</a></li>
+                        <li>Select your project: <strong>petalsecomsite</strong></li>
+                        <li>Click on "Authentication" in the left menu</li>
+                        <li>Click "Get Started" or "Sign-in method"</li>
+                        <li>Enable "Email/Password" sign-in provider</li>
+                        <li>Click "Save"</li>
+                    </ol>
+                    
+                    <div style="background: var(--background); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                        <p><i class="fas fa-info-circle" style="color: var(--accent2);"></i> After enabling, refresh this page.</p>
+                    </div>
+                    
+                    <p style="margin-top: 1rem;">Currently running in <strong>Demo Mode</strong> with local storage.</p>
+                    
+                    <button class="btn btn-primary" onclick="closeModal(); location.reload();" style="margin-top: 1rem;">
+                        <i class="fas fa-sync-alt"></i> Refresh Page
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        };
 
         // Show Home Page
         window.showHome = function() {
@@ -1192,7 +1272,7 @@
                     <i class="fas fa-flower" style="font-size: 4rem; color: var(--primary); margin-bottom: 2rem;"></i>
                     <h1 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem;">Our Story</h1>
                     <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 2rem;">
-                        Moreen Petals started with a simple passion for creating beautiful, handcrafted flower art. 
+                        Morrn Petals started with a simple passion for creating beautiful, handcrafted flower art. 
                         Each piece is carefully designed and crafted using premium ribbons and materials, bringing 
                         the beauty of nature into everyday life. Our journey began in a small studio in Mumbai, 
                         and today we're proud to share our creations with flower lovers everywhere.
@@ -1228,7 +1308,7 @@
                                 <i class="fas fa-envelope" style="color: var(--secondary); font-size: 1.5rem;"></i>
                                 <div>
                                     <h4>Email</h4>
-                                    <p style="color: var(--text-light);">hello@Moreenpetals.com</p>
+                                    <p style="color: var(--text-light);">hello@morrnpetals.com</p>
                                 </div>
                             </div>
                             
@@ -1305,8 +1385,8 @@
                 </div>
                 <div class="modal-body" style="text-align: center;">
                     <i class="fas fa-user-circle" style="font-size: 5rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                    <h3>${currentUser?.email || 'User'}</h3>
-                    <p style="color: var(--text-light); margin: 1rem 0;">Welcome to Moreen Petals!</p>
+                    <h3>${currentUser?.email || currentUser?.name || 'User'}</h3>
+                    <p style="color: var(--text-light); margin: 1rem 0;">Welcome to Morrn Petals!</p>
                     <button class="btn btn-secondary" onclick="logout()" style="margin-top: 1rem;">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </button>
@@ -1342,6 +1422,11 @@
                     <button class="btn btn-secondary" onclick="showRegisterModal()" style="width: 100%;">
                         <i class="fas fa-user-plus"></i> Register
                     </button>
+                    ${!isFirebaseAvailable ? `
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--accent3);">
+                            <i class="fas fa-info-circle"></i> Demo Mode: Using local storage
+                        </p>
+                    ` : ''}
                 </div>
             `;
             
@@ -1381,22 +1466,22 @@
                     </div>
                     <div class="form-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="regPassword" placeholder="Password" required>
+                        <input type="password" id="regPassword" placeholder="Password (min. 6 characters)" required>
                     </div>
                     <button class="btn btn-primary" onclick="register()" style="width: 100%;">
                         <i class="fas fa-check"></i> Register
                     </button>
+                    ${!isFirebaseAvailable ? `
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--accent3);">
+                            <i class="fas fa-info-circle"></i> Demo Mode: Registration works with local storage
+                        </p>
+                    ` : ''}
                 </div>
             `;
         };
 
         // Login Function
         window.login = async function() {
-            if (!auth) {
-                showToast('Authentication not available. Please try again later.', 'error');
-                return;
-            }
-            
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
@@ -1405,32 +1490,43 @@
                 return;
             }
 
-            try {
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                currentUser = userCredential.user;
-                closeModal();
-                showToast('Login successful!', 'success');
-            } catch (error) {
-                console.error('Login error:', error);
-                let errorMessage = 'Login failed. Please try again.';
-                if (error.code === 'auth/user-not-found') {
-                    errorMessage = 'User not found. Please register.';
-                } else if (error.code === 'auth/wrong-password') {
-                    errorMessage = 'Wrong password.';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'Invalid email format.';
+            if (isFirebaseAvailable && auth) {
+                // Firebase login
+                try {
+                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                    currentUser = userCredential.user;
+                    closeModal();
+                    showToast('Login successful!', 'success');
+                } catch (error) {
+                    console.error('Login error:', error);
+                    let errorMessage = 'Login failed. Please try again.';
+                    if (error.code === 'auth/user-not-found') {
+                        errorMessage = 'User not found. Please register.';
+                    } else if (error.code === 'auth/wrong-password') {
+                        errorMessage = 'Wrong password.';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage = 'Invalid email format.';
+                    }
+                    showToast(errorMessage, 'error');
                 }
-                showToast(errorMessage, 'error');
+            } else {
+                // Demo mode login with local storage
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    currentUser = user;
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    closeModal();
+                    showToast('Login successful! (Demo Mode)', 'success');
+                } else {
+                    showToast('Invalid email or password', 'error');
+                }
             }
         };
 
         // Register Function
         window.register = async function() {
-            if (!auth || !db) {
-                showToast('Registration not available. Please try again later.', 'error');
-                return;
-            }
-            
             const userData = {
                 name: document.getElementById('regName').value,
                 email: document.getElementById('regEmail').value,
@@ -1455,44 +1551,72 @@
                 return;
             }
 
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(userData.email, password);
-                
-                await db.collection("users").add({
-                    uid: userCredential.user.uid,
-                    ...userData
-                });
+            if (isFirebaseAvailable && auth && db) {
+                // Firebase registration
+                try {
+                    const userCredential = await auth.createUserWithEmailAndPassword(userData.email, password);
+                    
+                    await db.collection("users").add({
+                        uid: userCredential.user.uid,
+                        ...userData
+                    });
 
-                currentUser = userCredential.user;
-                closeModal();
-                showToast('Registration successful!', 'success');
-            } catch (error) {
-                console.error('Registration error:', error);
-                let errorMessage = 'Registration failed. Please try again.';
-                if (error.code === 'auth/email-already-in-use') {
-                    errorMessage = 'Email already in use.';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'Invalid email format.';
-                } else if (error.code === 'auth/weak-password') {
-                    errorMessage = 'Password is too weak.';
+                    currentUser = userCredential.user;
+                    closeModal();
+                    showToast('Registration successful!', 'success');
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    let errorMessage = 'Registration failed. Please try again.';
+                    if (error.code === 'auth/email-already-in-use') {
+                        errorMessage = 'Email already in use.';
+                    } else if (error.code === 'auth/invalid-email') {
+                        errorMessage = 'Invalid email format.';
+                    } else if (error.code === 'auth/weak-password') {
+                        errorMessage = 'Password is too weak.';
+                    }
+                    showToast(errorMessage, 'error');
                 }
-                showToast(errorMessage, 'error');
+            } else {
+                // Demo mode registration with local storage
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                
+                // Check if email already exists
+                if (users.some(u => u.email === userData.email)) {
+                    showToast('Email already exists', 'error');
+                    return;
+                }
+                
+                // Add password to user data
+                userData.password = password;
+                userData.id = 'user_' + Date.now();
+                
+                users.push(userData);
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                // Auto login
+                currentUser = userData;
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                
+                closeModal();
+                showToast('Registration successful! (Demo Mode)', 'success');
             }
         };
 
         // Logout Function
         window.logout = async function() {
-            if (!auth) return;
-            
-            try {
-                await auth.signOut();
-                currentUser = null;
-                closeModal();
-                showToast('Logged out successfully!', 'success');
-                showHome();
-            } catch (error) {
-                showToast(error.message, 'error');
+            if (isFirebaseAvailable && auth) {
+                try {
+                    await auth.signOut();
+                } catch (error) {
+                    console.error('Logout error:', error);
+                }
             }
+            
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            closeModal();
+            showToast('Logged out successfully!', 'success');
+            showHome();
         };
 
         // Product Details
@@ -1701,14 +1825,15 @@
 
         // Place Order
         window.placeOrder = async function() {
-            if (!currentUser || !db) {
-                showToast('Order placement not available', 'error');
+            if (!currentUser) {
+                showToast('Please login first', 'error');
                 return;
             }
 
             const orderData = {
-                userId: currentUser.uid,
+                userId: currentUser.uid || currentUser.id,
                 customerEmail: currentUser.email,
+                customerName: currentUser.name || currentUser.email,
                 items: cart,
                 total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
                 status: 'pending',
@@ -1716,8 +1841,28 @@
                 paymentStatus: 'pending'
             };
 
-            try {
-                await db.collection("orders").add(orderData);
+            if (isFirebaseAvailable && db) {
+                // Firebase order
+                try {
+                    await db.collection("orders").add(orderData);
+                    
+                    // Clear cart
+                    cart = [];
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartCount();
+                    
+                    closeModal();
+                    showToast('Order placed successfully! The seller will contact you soon.', 'success');
+                } catch (error) {
+                    console.error('Order error:', error);
+                    showToast('Error placing order. Please try again.', 'error');
+                }
+            } else {
+                // Demo mode order
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                orderData.id = 'order_' + Date.now();
+                orders.push(orderData);
+                localStorage.setItem('orders', JSON.stringify(orders));
                 
                 // Clear cart
                 cart = [];
@@ -1725,10 +1870,7 @@
                 updateCartCount();
                 
                 closeModal();
-                showToast('Order placed successfully! The seller will contact you soon.', 'success');
-            } catch (error) {
-                console.error('Order error:', error);
-                showToast('Error placing order. Please try again.', 'error');
+                showToast('Order placed successfully! (Demo Mode)', 'success');
             }
         };
 
@@ -1738,6 +1880,17 @@
             const email = document.getElementById('contactEmail').value;
             const phone = document.getElementById('contactPhone').value;
             const message = document.getElementById('contactMessage').value;
+
+            // Save message to localStorage in demo mode
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push({
+                name,
+                email,
+                phone,
+                message,
+                date: new Date().toISOString()
+            });
+            localStorage.setItem('messages', JSON.stringify(messages));
 
             showToast('Message sent! We\'ll get back to you soon.', 'success');
             

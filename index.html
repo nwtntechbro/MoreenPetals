@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Moreen Petals • Handcrafted Flower Art</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B2D8C;
+            --secondary: #C5A059;
+            --accent1: #D97998;
+            --accent2: #4CB1C4;
+            --accent3: #F4D03F;
+            --background: #F9F7F2;
+            --white: #FFFFFF;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-hover: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+            font-size: 1rem;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        .cart-link {
+            position: relative;
+            background: var(--secondary);
+            color: white;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent1);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            padding: 2rem 5%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 600px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: var(--accent3);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-content p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent1));
+            color: white;
+            box-shadow: 0 10px 20px rgba(107, 45, 140, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(107, 45, 140, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: 30px;
+            left: -30px;
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 4rem 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-materials {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            background: var(--accent3);
+            color: var(--text-dark);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 10px;
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart:hover {
+            background: var(--secondary);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent1));
+            color: white;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-hover);
+            z-index: 1500;
+            transition: right 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .cart-item-price {
+            color: var(--secondary);
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 2px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow-hover);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 3000;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero-section {
+                gap: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .logo {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .nav-link {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-link span {
+                display: none;
+            }
+
+            .nav-link i {
+                font-size: 1.3rem;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .product-card {
+                font-size: 0.9rem;
+            }
+
+            .product-name {
+                font-size: 1rem;
+            }
+
+            .product-price {
+                font-size: 1.1rem;
+            }
+
+            .add-to-cart {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .cart-sidebar {
+                max-width: 100%;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+
+            .toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) {
+            .nav-link:active {
+                background: var(--primary);
+                color: white;
+            }
+
+            .product-card:active {
+                transform: scale(0.98);
+            }
+
+            .btn:active {
+                transform: scale(0.95);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fas fa-flower"></i>
+            </div>
+            <div class="logo-text">
+                Moreen<span>Petals</span>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a class="nav-link" onclick="showHome()">
+                <i class="fas fa-home"></i> <span>Home</span>
+            </a>
+            <a class="nav-link" onclick="showProducts()">
+                <i class="fas fa-flower"></i> <span>Products</span>
+            </a>
+            <a class="nav-link" onclick="showAbout()">
+                <i class="fas fa-heart"></i> <span>About</span>
+            </a>
+            <a class="nav-link" onclick="showContact()">
+                <i class="fas fa-envelope"></i> <span>Contact</span>
+            </a>
+            <a class="nav-link" onclick="showAccount()">
+                <i class="fas fa-user"></i> <span>Account</span>
+            </a>
+            <a class="nav-link cart-link" onclick="showCart()">
+                <i class="fas fa-shopping-cart"></i> <span>Cart</span>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Dynamic content will be loaded here -->
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+            <button class="modal-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">₹0.00</span>
+            </div>
+            <button class="btn btn-primary" onclick="checkout()" style="width: 100%;">
+                <i class="fas fa-lock"></i> Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Firebase SDK (Correct Version) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4UDpesN_IH4EhsbLnGOvagJ95QTZXL14",
+            authDomain: "petalsecomsite.firebaseapp.com",
+            projectId: "petalsecomsite",
+            storageBucket: "petalsecomsite.firebasestorage.app",
+            messagingSenderId: "891674534309",
+            appId: "1:891674534309:web:417bff68f2a4a5115e084c",
+            measurementId: "G-7CYFTLWRZ2"
+        };
+
+        // Initialize Firebase with error handling
+        let app, db, auth;
+        
+        try {
+            // Initialize Firebase
+            app = firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            auth = firebase.auth();
+            
+            // Enable offline persistence for better mobile experience
+            db.enablePersistence()
+                .then(() => {
+                    console.log('Offline persistence enabled');
+                })
+                .catch((err) => {
+                    if (err.code == 'failed-precondition') {
+                        console.log('Persistence failed: Multiple tabs open');
+                    } else if (err.code == 'unimplemented') {
+                        console.log('Persistence not supported');
+                    }
+                });
+                
+            console.log('Firebase initialized successfully');
+        } catch (error) {
+            console.error('Firebase initialization error:', error);
+            // Don't show error toast here, let the app work offline
+        }
+
+        // Global Variables
+        let currentUser = null;
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let products = [];
+
+        // Initialize App
+        window.addEventListener('load', async () => {
+            updateCartCount();
+            checkAuthState();
+            await loadProducts();
+            showHome();
+        });
+
+        // Check Auth State
+        function checkAuthState() {
+            if (!auth) {
+                console.log('Auth not available');
+                return;
+            }
+            
+            auth.onAuthStateChanged((user) => {
+                currentUser = user;
+                if (user) {
+                    console.log('User logged in:', user.email);
+                }
+            });
+        }
+
+        // Load Products
+        async function loadProducts() {
+            // First try to load from localStorage
+            const savedProducts = localStorage.getItem('products');
+            if (savedProducts) {
+                products = JSON.parse(savedProducts);
+                return;
+            }
+            
+            // If no saved products, use sample products
+            products = getSampleProducts();
+            localStorage.setItem('products', JSON.stringify(products));
+            
+            // Try to load from Firebase if available
+            if (db) {
+                try {
+                    const querySnapshot = await db.collection("products").get();
+                    if (!querySnapshot.empty) {
+                        const firebaseProducts = [];
+                        querySnapshot.forEach((doc) => {
+                            firebaseProducts.push({ id: doc.id, ...doc.data() });
+                        });
+                        products = firebaseProducts;
+                        localStorage.setItem('products', JSON.stringify(products));
+                    }
+                } catch (error) {
+                    console.log('Using offline products');
+                }
+            }
+        }
+
+        // Get Sample Products
+        function getSampleProducts() {
+            return [
+                {
+                    id: '1',
+                    name: "Rose Petal Hairpin",
+                    description: "Elegant handcrafted rose hairpin with silk ribbons",
+                    materials: "Silk ribbons, beads, metal clip",
+                    price: 499,
+                    discount: 10,
+                    category: "hair accessories",
+                    imageUrl: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=500",
+                    averageRating: 4.5,
+                    totalReviews: 12
+                },
+                {
+                    id: '2',
+                    name: "Lily Flower Brooch",
+                    description: "Beautiful lily flower brooch for elegant occasions",
+                    materials: "Satin ribbons, pearl beads",
+                    price: 599,
+                    discount: 0,
+                    category: "pins",
+                    imageUrl: "https://images.unsplash.com/photo-1589128777073-2634ae8a9fa0?w=500",
+                    averageRating: 5,
+                    totalReviews: 8
+                },
+                {
+                    id: '3',
+                    name: "Wedding Bouquet",
+                    description: "Handcrafted bridal bouquet with mixed flowers",
+                    materials: "Silk flowers, ribbons, crystals",
+                    price: 2499,
+                    discount: 15,
+                    category: "bouquets",
+                    imageUrl: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500",
+                    averageRating: 4.8,
+                    totalReviews: 15
+                },
+                {
+                    id: '4',
+                    name: "Silk Flower Handbag",
+                    description: "Beautiful handbag decorated with silk flowers",
+                    materials: "Silk, beads, fabric",
+                    price: 1299,
+                    discount: 5,
+                    category: "handbags",
+                    imageUrl: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500",
+                    averageRating: 4.3,
+                    totalReviews: 7
+                },
+                {
+                    id: '5',
+                    name: "Flower Pot Arrangement",
+                    description: "Decorative flower pot with mixed artificial flowers",
+                    materials: "Ceramic pot, silk flowers",
+                    price: 899,
+                    discount: 0,
+                    category: "vases",
+                    imageUrl: "https://images.unsplash.com/photo-1467043153537-a0e3c5b30e23?w=500",
+                    averageRating: 4.6,
+                    totalReviews: 9
+                }
+            ];
+        }
+
+        // Show Home Page
+        window.showHome = function() {
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <!-- Hero Section -->
+                <section class="hero-section">
+                    <div class="hero-content">
+                        <h1>Handcrafted <span>Flower Art</span> for Every Occasion</h1>
+                        <p>Discover our exquisite collection of handcrafted flower accessories, each piece uniquely crafted with premium ribbons and materials to bring nature's beauty to your style.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" onclick="showProducts()">
+                                <i class="fas fa-shopping-bag"></i> Shop Now
+                            </button>
+                            <button class="btn btn-secondary" onclick="showAbout()">
+                                <i class="fas fa-play"></i> Our Story
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=800" alt="Flower Art">
+                        <div class="floating-badge">
+                            <i class="fas fa-heart" style="color: var(--accent1); font-size: 2rem;"></i>
+                            <div>
+                                <h4>100% Handmade</h4>
+                                <p>Each piece unique</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="features-section">
+                    <div class="section-title">
+                        <h2>Why Choose Us</h2>
+                        <p>We take pride in our craftsmanship and attention to detail</p>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-flower"></i>
+                            </div>
+                            <h3>Fresh Designs</h3>
+                            <p>Latest trends in floral accessories</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-gem"></i>
+                            </div>
+                            <h3>Premium Quality</h3>
+                            <p>Finest materials used</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>Handcrafted</h3>
+                            <p>Made with love and care</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <h3>Gift Ready</h3>
+                            <p>Beautifully packaged</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Products Preview -->
+                <section class="products-section">
+                    <div class="section-title">
+                        <h2>Featured Products</h2>
+                        <p>Explore our most popular handcrafted creations</p>
+                    </div>
+                    <div class="products-grid" id="featuredProducts">
+                        ${renderProductCards(products.slice(0, 3))}
+                    </div>
+                </section>
+            `;
+        };
+
+        // Show Products Page
+        window.showProducts = function() {
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <section class="products-section">
+                    <div class="section-title">
+                        <h2>Our Collection</h2>
+                        <p>Discover our unique handcrafted flower arrangements</p>
+                    </div>
+                    <div class="products-grid" id="allProducts">
+                        ${renderProductCards(products)}
+                    </div>
+                </section>
+            `;
+        };
+
+        // Render Product Cards
+        function renderProductCards(productsList) {
+            if (!productsList || productsList.length === 0) {
+                return `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <div class="spinner"></div>
+                        <p>Loading products...</p>
+                    </div>
+                `;
+            }
+
+            return productsList.map(product => {
+                const finalPrice = product.discount > 0 
+                    ? product.price * (1 - product.discount / 100) 
+                    : product.price;
+
+                return `
+                    <div class="product-card" onclick="showProductDetails('${product.id}')">
+                        <img src="${product.imageUrl || 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=500'}" 
+                             alt="${product.name}" 
+                             class="product-image"
+                             loading="lazy">
+                        <div class="product-info">
+                            <div class="product-category">${product.category || 'Handmade'}</div>
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-materials">
+                                <i class="fas fa-leaf"></i> ${product.materials || 'Premium materials'}
+                            </div>
+                            <div class="product-price">
+                                <span>₹${finalPrice.toFixed(2)}</span>
+                                ${product.discount > 0 ? 
+                                    `<span class="original-price">₹${product.price.toFixed(2)}</span>
+                                     <span class="discount-badge">-${product.discount}%</span>` : ''}
+                            </div>
+                            <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${product.id}')">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Show About Page
+        window.showAbout = function() {
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <section style="max-width: 800px; margin: 0 auto; padding: 2rem; text-align: center;">
+                    <i class="fas fa-flower" style="font-size: 4rem; color: var(--primary); margin-bottom: 2rem;"></i>
+                    <h1 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem;">Our Story</h1>
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 2rem;">
+                        Moreen Petals started with a simple passion for creating beautiful, handcrafted flower art. 
+                        Each piece is carefully designed and crafted using premium ribbons and materials, bringing 
+                        the beauty of nature into everyday life. Our journey began in a small studio in Mumbai, 
+                        and today we're proud to share our creations with flower lovers everywhere.
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem;">
+                        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+                            <i class="fas fa-heart" style="color: var(--accent1); font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <h3>Our Mission</h3>
+                            <p style="color: var(--text-light);">To bring joy through handcrafted floral art</p>
+                        </div>
+                        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow);">
+                            <i class="fas fa-eye" style="color: var(--accent2); font-size: 2rem; margin-bottom: 1rem;"></i>
+                            <h3>Our Vision</h3>
+                            <p style="color: var(--text-light);">To be the most loved floral accessory brand</p>
+                        </div>
+                    </div>
+                </section>
+            `;
+        };
+
+        // Show Contact Page
+        window.showContact = function() {
+            const content = document.getElementById('mainContent');
+            content.innerHTML = `
+                <section style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+                    <h1 style="font-family: 'Playfair Display'; font-size: 3rem; color: var(--primary); text-align: center; margin-bottom: 3rem;">Get in Touch</h1>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                        <div>
+                            <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Contact Information</h3>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                <i class="fas fa-envelope" style="color: var(--secondary); font-size: 1.5rem;"></i>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p style="color: var(--text-light);">hello@Moreenpetals.com</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1.5rem;"></i>
+                                <div>
+                                    <h4>WhatsApp</h4>
+                                    <p style="color: var(--text-light);">+91 98765 43210</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                                <i class="fas fa-map-marker-alt" style="color: var(--accent1); font-size: 1.5rem;"></i>
+                                <div>
+                                    <h4>Address</h4>
+                                    <p style="color: var(--text-light);">Mumbai, India</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                                <a href="#" style="color: var(--primary); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                                <a href="#" style="color: var(--primary); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                                <a href="#" style="color: var(--primary); font-size: 1.5rem;"><i class="fab fa-pinterest"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Send us a Message</h3>
+                            <form onsubmit="event.preventDefault(); sendMessage()">
+                                <div class="form-group">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="contactName" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="contactEmail" placeholder="Your Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="contactPhone" placeholder="Your Phone">
+                                </div>
+                                <div class="form-group">
+                                    <i class="fas fa-comment"></i>
+                                    <textarea id="contactMessage" placeholder="Your Message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            `;
+        };
+
+        // Show Account Page
+        window.showAccount = function() {
+            if (currentUser) {
+                showProfile();
+            } else {
+                showLoginModal();
+            }
+        };
+
+        // Show Profile
+        function showProfile() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2><i class="fas fa-user-circle"></i> My Profile</h2>
+                    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <i class="fas fa-user-circle" style="font-size: 5rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3>${currentUser?.email || 'User'}</h3>
+                    <p style="color: var(--text-light); margin: 1rem 0;">Welcome to Moreen Petals!</p>
+                    <button class="btn btn-secondary" onclick="logout()" style="margin-top: 1rem;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        // Show Login Modal
+        function showLoginModal() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button class="btn btn-primary" onclick="login()" style="width: 100%; margin-bottom: 1rem;">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <p style="text-align: center; margin: 1rem 0;">Don't have an account?</p>
+                    <button class="btn btn-secondary" onclick="showRegisterModal()" style="width: 100%;">
+                        <i class="fas fa-user-plus"></i> Register
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        // Show Register Modal
+        window.showRegisterModal = function() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2><i class="fas fa-user-plus"></i> Register</h2>
+                    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="regName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="regEmail" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="regPhone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fab fa-whatsapp"></i>
+                        <input type="tel" id="regWhatsapp" placeholder="WhatsApp Number" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <textarea id="regAddress" placeholder="Address" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regPassword" placeholder="Password" required>
+                    </div>
+                    <button class="btn btn-primary" onclick="register()" style="width: 100%;">
+                        <i class="fas fa-check"></i> Register
+                    </button>
+                </div>
+            `;
+        };
+
+        // Login Function
+        window.login = async function() {
+            if (!auth) {
+                showToast('Authentication not available. Please try again later.', 'error');
+                return;
+            }
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showToast('Please fill all fields', 'error');
+                return;
+            }
+
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                currentUser = userCredential.user;
+                closeModal();
+                showToast('Login successful!', 'success');
+            } catch (error) {
+                console.error('Login error:', error);
+                let errorMessage = 'Login failed. Please try again.';
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'User not found. Please register.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Wrong password.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Invalid email format.';
+                }
+                showToast(errorMessage, 'error');
+            }
+        };
+
+        // Register Function
+        window.register = async function() {
+            if (!auth || !db) {
+                showToast('Registration not available. Please try again later.', 'error');
+                return;
+            }
+            
+            const userData = {
+                name: document.getElementById('regName').value,
+                email: document.getElementById('regEmail').value,
+                phone: document.getElementById('regPhone').value,
+                whatsapp: document.getElementById('regWhatsapp').value,
+                address: document.getElementById('regAddress').value,
+                createdAt: new Date().toISOString()
+            };
+
+            const password = document.getElementById('regPassword').value;
+
+            // Validate all fields
+            for (let key in userData) {
+                if (!userData[key]) {
+                    showToast('Please fill all fields', 'error');
+                    return;
+                }
+            }
+
+            if (password.length < 6) {
+                showToast('Password must be at least 6 characters', 'error');
+                return;
+            }
+
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(userData.email, password);
+                
+                await db.collection("users").add({
+                    uid: userCredential.user.uid,
+                    ...userData
+                });
+
+                currentUser = userCredential.user;
+                closeModal();
+                showToast('Registration successful!', 'success');
+            } catch (error) {
+                console.error('Registration error:', error);
+                let errorMessage = 'Registration failed. Please try again.';
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = 'Email already in use.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Invalid email format.';
+                } else if (error.code === 'auth/weak-password') {
+                    errorMessage = 'Password is too weak.';
+                }
+                showToast(errorMessage, 'error');
+            }
+        };
+
+        // Logout Function
+        window.logout = async function() {
+            if (!auth) return;
+            
+            try {
+                await auth.signOut();
+                currentUser = null;
+                closeModal();
+                showToast('Logged out successfully!', 'success');
+                showHome();
+            } catch (error) {
+                showToast(error.message, 'error');
+            }
+        };
+
+        // Product Details
+        window.showProductDetails = function(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const finalPrice = product.discount > 0 
+                ? product.price * (1 - product.discount / 100) 
+                : product.price;
+
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2>${product.name}</h2>
+                    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="${product.imageUrl || 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=500'}" 
+                         alt="${product.name}" 
+                         style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px; margin-bottom: 1.5rem;">
+                    
+                    <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                        ${product.description}
+                    </p>
+                    
+                    <div style="background: var(--background); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem;">
+                        <p style="margin-bottom: 0.5rem;">
+                            <i class="fas fa-leaf" style="color: var(--secondary);"></i> 
+                            <strong>Materials:</strong> ${product.materials}
+                        </p>
+                        <p>
+                            <i class="fas fa-tag" style="color: var(--secondary);"></i> 
+                            <strong>Category:</strong> ${product.category}
+                        </p>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 2rem; font-weight: bold; color: var(--primary);">₹${finalPrice.toFixed(2)}</span>
+                            ${product.discount > 0 ? 
+                                `<span style="margin-left: 1rem; color: var(--text-light); text-decoration: line-through;">₹${product.price.toFixed(2)}</span>` : ''}
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart('${product.id}'); closeModal();">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        };
+
+        // Cart Functions
+        window.addToCart = function(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const finalPrice = product.discount > 0 
+                ? product.price * (1 - product.discount / 100) 
+                : product.price;
+
+            const existingItem = cart.find(item => item.productId === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    productId: product.id,
+                    name: product.name,
+                    price: finalPrice,
+                    quantity: 1,
+                    imageUrl: product.imageUrl
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showToast('Added to cart!', 'success');
+        };
+
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        window.showCart = function() {
+            const sidebar = document.getElementById('cartSidebar');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div style="text-align: center; padding: 3rem;">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; color: var(--primary); opacity: 0.3;"></i>
+                        <p style="margin-top: 1rem;">Your cart is empty</p>
+                    </div>
+                `;
+                cartTotal.textContent = '₹0.00';
+            } else {
+                let total = 0;
+                cartItems.innerHTML = '';
+                
+                cart.forEach((item, index) => {
+                    total += item.price * item.quantity;
+                    cartItems.innerHTML += `
+                        <div class="cart-item">
+                            <img src="${item.imageUrl || 'https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=100'}" 
+                                 alt="${item.name}" 
+                                 class="cart-item-image">
+                            <div class="cart-item-details">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">₹${item.price.toFixed(2)} x ${item.quantity}</div>
+                                <div class="cart-item-quantity">
+                                    <button class="quantity-btn" onclick="updateCartQuantity(${index}, -1)">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="quantity-btn" onclick="updateCartQuantity(${index}, 1)">+</button>
+                                    <button class="quantity-btn" onclick="removeFromCart(${index})" style="background: #ff4444; color: white;">×</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartTotal.textContent = `₹${total.toFixed(2)}`;
+            }
+
+            sidebar.classList.add('active');
+        };
+
+        window.closeCart = function() {
+            document.getElementById('cartSidebar').classList.remove('active');
+        };
+
+        window.updateCartQuantity = function(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showCart();
+        };
+
+        window.removeFromCart = function(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showCart();
+            showToast('Item removed from cart', 'success');
+        };
+
+        // Checkout
+        window.checkout = function() {
+            if (!currentUser) {
+                showToast('Please login to checkout', 'error');
+                showLoginModal();
+                return;
+            }
+
+            if (cart.length === 0) {
+                showToast('Your cart is empty', 'error');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2><i class="fas fa-lock"></i> Checkout</h2>
+                    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Order Summary</h3>
+                    
+                    ${cart.map(item => `
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>${item.name} x${item.quantity}</span>
+                            <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>
+                    `).join('')}
+                    
+                    <div style="display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid var(--primary);">
+                        <strong>Total:</strong>
+                        <strong style="color: var(--primary);">₹${total.toFixed(2)}</strong>
+                    </div>
+                    
+                    <p style="margin: 1.5rem 0; color: var(--text-light);">
+                        <i class="fas fa-info-circle"></i>
+                        Payment will be arranged with the seller after order confirmation.
+                    </p>
+                    
+                    <button class="btn btn-primary" onclick="placeOrder()" style="width: 100%;">
+                        <i class="fas fa-check-circle"></i> Confirm Order
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            closeCart();
+        };
+
+        // Place Order
+        window.placeOrder = async function() {
+            if (!currentUser || !db) {
+                showToast('Order placement not available', 'error');
+                return;
+            }
+
+            const orderData = {
+                userId: currentUser.uid,
+                customerEmail: currentUser.email,
+                items: cart,
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                status: 'pending',
+                orderDate: new Date().toISOString(),
+                paymentStatus: 'pending'
+            };
+
+            try {
+                await db.collection("orders").add(orderData);
+                
+                // Clear cart
+                cart = [];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                
+                closeModal();
+                showToast('Order placed successfully! The seller will contact you soon.', 'success');
+            } catch (error) {
+                console.error('Order error:', error);
+                showToast('Error placing order. Please try again.', 'error');
+            }
+        };
+
+        // Send Message
+        window.sendMessage = function() {
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const phone = document.getElementById('contactPhone').value;
+            const message = document.getElementById('contactMessage').value;
+
+            showToast('Message sent! We\'ll get back to you soon.', 'success');
+            
+            // Clear form
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactPhone').value = '';
+            document.getElementById('contactMessage').value = '';
+        };
+
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}" 
+                   style="color: ${type === 'success' ? '#4CAF50' : '#f44336'};"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Modal Functions
+        window.closeModal = function() {
+            document.getElementById('modal').classList.remove('active');
+        };
+    </script>
+</body>
+</html>

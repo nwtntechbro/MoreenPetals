@@ -613,6 +613,282 @@
             margin-bottom: 1rem;
         }
 
+        /* Profile Dashboard Styles */
+        .profile-dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent1));
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+        }
+
+        .profile-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent1));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .stat-content h4 {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-content p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .profile-details {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 10px;
+        }
+
+        .detail-item i {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .detail-content h4 {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .detail-content p {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .orders-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .order-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .order-tab {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: var(--background);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .order-card {
+            border: 2px solid #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .order-card:hover {
+            border-color: var(--primary);
+        }
+
+        .order-header {
+            background: var(--background);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .order-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .order-status {
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: var(--accent3);
+            color: var(--text-dark);
+        }
+
+        .status-confirmed {
+            background: var(--accent2);
+            color: white;
+        }
+
+        .status-completed {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .status-cancelled {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .order-body {
+            padding: 1.5rem;
+        }
+
+        .order-items {
+            margin-bottom: 1rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--primary);
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
         /* Loading Spinner */
         .loading-spinner {
             text-align: center;
@@ -787,6 +1063,28 @@
                 font-size: 0.8rem;
                 padding: 0.3rem;
             }
+
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .order-tabs {
+                flex-wrap: wrap;
+            }
         }
 
         @media (max-width: 480px) {
@@ -928,12 +1226,14 @@
         let isFirebaseAvailable = false;
         let db = null;
         let auth = null;
+        let userOrders = [];
 
         // Initialize App
         window.addEventListener('load', async () => {
             await initializeFirebase();
             updateCartCount();
             await loadProducts();
+            await loadUserOrders();
             showHome();
         });
 
@@ -963,6 +1263,7 @@
                     currentUser = user;
                     if (user) {
                         console.log('User logged in:', user.email);
+                        loadUserOrders();
                     }
                 });
                 
@@ -987,7 +1288,41 @@
             const savedUser = localStorage.getItem('currentUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
+                loadUserOrders();
             }
+        }
+
+        // Load user orders
+        async function loadUserOrders() {
+            if (!currentUser) return;
+            
+            userOrders = [];
+            
+            if (isFirebaseAvailable && db) {
+                try {
+                    const querySnapshot = await db.collection("orders")
+                        .where("userId", "==", currentUser.uid)
+                        .orderBy("orderDate", "desc")
+                        .get();
+                    
+                    querySnapshot.forEach((doc) => {
+                        userOrders.push({ id: doc.id, ...doc.data() });
+                    });
+                } catch (error) {
+                    console.log('Error loading orders from Firebase:', error);
+                }
+            }
+            
+            // Load from localStorage as well (for demo mode)
+            const localOrders = JSON.parse(localStorage.getItem('orders')) || [];
+            const userLocalOrders = localOrders.filter(order => 
+                order.userId === (currentUser?.uid || currentUser?.id)
+            );
+            
+            // Merge orders
+            userOrders = [...userOrders, ...userLocalOrders].sort((a, b) => 
+                new Date(b.orderDate) - new Date(a.orderDate)
+            );
         }
 
         // Load Products
@@ -1367,34 +1702,309 @@
         // Show Account Page
         window.showAccount = function() {
             if (currentUser) {
-                showProfile();
+                showProfileDashboard();
             } else {
                 showLoginModal();
             }
         };
 
-        // Show Profile
-        function showProfile() {
+        // Show Profile Dashboard with complete user details and order history
+        function showProfileDashboard() {
+            const content = document.getElementById('mainContent');
+            
+            // Calculate order statistics
+            const totalOrders = userOrders.length;
+            const pendingOrders = userOrders.filter(o => o.status === 'pending').length;
+            const completedOrders = userOrders.filter(o => o.status === 'completed').length;
+            const totalSpent = userOrders.reduce((sum, order) => sum + order.total, 0);
+            
+            content.innerHTML = `
+                <div class="profile-dashboard">
+                    <!-- Profile Header -->
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h2>${currentUser?.name || currentUser?.email || 'User'}</h2>
+                            <p><i class="fas fa-envelope"></i> ${currentUser?.email || 'N/A'}</p>
+                            ${currentUser?.phone ? `<p><i class="fas fa-phone"></i> ${currentUser.phone}</p>` : ''}
+                            ${currentUser?.whatsapp ? `<p><i class="fab fa-whatsapp"></i> ${currentUser.whatsapp}</p>` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="profile-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4>Total Orders</h4>
+                                <p>${totalOrders}</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4>Pending Orders</h4>
+                                <p>${pendingOrders}</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4>Completed</h4>
+                                <p>${completedOrders}</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h4>Total Spent</h4>
+                                <p>₹${totalSpent.toFixed(2)}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Details -->
+                    <div class="profile-details">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">
+                            <i class="fas fa-id-card"></i> Personal Information
+                        </h3>
+                        <div class="details-grid">
+                            ${currentUser?.name ? `
+                                <div class="detail-item">
+                                    <i class="fas fa-user"></i>
+                                    <div class="detail-content">
+                                        <h4>Full Name</h4>
+                                        <p>${currentUser.name}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                            ${currentUser?.email ? `
+                                <div class="detail-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="detail-content">
+                                        <h4>Email</h4>
+                                        <p>${currentUser.email}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                            ${currentUser?.phone ? `
+                                <div class="detail-item">
+                                    <i class="fas fa-phone"></i>
+                                    <div class="detail-content">
+                                        <h4>Phone</h4>
+                                        <p>${currentUser.phone}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                            ${currentUser?.whatsapp ? `
+                                <div class="detail-item">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <div class="detail-content">
+                                        <h4>WhatsApp</h4>
+                                        <p>${currentUser.whatsapp}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                            ${currentUser?.address ? `
+                                <div class="detail-item" style="grid-column: 1/-1;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div class="detail-content">
+                                        <h4>Address</h4>
+                                        <p>${currentUser.address}</p>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div class="orders-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-history"></i> Order History</h3>
+                            <div class="order-tabs">
+                                <button class="order-tab active" onclick="filterOrders('all')">All</button>
+                                <button class="order-tab" onclick="filterOrders('pending')">Pending</button>
+                                <button class="order-tab" onclick="filterOrders('confirmed')">Confirmed</button>
+                                <button class="order-tab" onclick="filterOrders('completed')">Completed</button>
+                            </div>
+                        </div>
+
+                        <div class="orders-list" id="ordersList">
+                            ${renderOrders(userOrders)}
+                        </div>
+                    </div>
+
+                    <!-- Logout Button -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-secondary" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Orders
+        function renderOrders(orders) {
+            if (!orders || orders.length === 0) {
+                return `
+                    <div style="text-align: center; padding: 3rem;">
+                        <i class="fas fa-box-open" style="font-size: 4rem; color: var(--primary); opacity: 0.3;"></i>
+                        <p style="margin-top: 1rem;">No orders yet. Start shopping!</p>
+                        <button class="btn btn-primary" onclick="showProducts()" style="margin-top: 1rem;">
+                            <i class="fas fa-shopping-bag"></i> Shop Now
+                        </button>
+                    </div>
+                `;
+            }
+
+            return orders.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <span class="order-id">Order #${order.id?.substring(0, 8) || 'N/A'}</span>
+                            <span class="order-date">
+                                <i class="far fa-calendar-alt"></i> 
+                                ${new Date(order.orderDate).toLocaleDateString('en-IN', {
+                                    day: 'numeric',
+                                    month: 'short',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                })}
+                            </span>
+                        </div>
+                        <span class="order-status status-${order.status || 'pending'}">
+                            ${(order.status || 'pending').toUpperCase()}
+                        </span>
+                    </div>
+                    <div class="order-body">
+                        <div class="order-items">
+                            ${order.items.map(item => `
+                                <div class="order-item">
+                                    <span>${item.name} x${item.quantity}</span>
+                                    <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="order-total">
+                            <span>Total Amount:</span>
+                            <span>₹${order.total.toFixed(2)}</span>
+                        </div>
+                        <div class="order-actions">
+                            <button class="btn btn-small btn-secondary" onclick="viewOrderDetails('${order.id}')">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                            ${order.status === 'pending' ? `
+                                <button class="btn btn-small" style="background: #ff4444;" onclick="cancelOrder('${order.id}')">
+                                    <i class="fas fa-times"></i> Cancel Order
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Orders
+        window.filterOrders = function(status) {
+            // Update tab active state
+            document.querySelectorAll('.order-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter orders
+            const filteredOrders = status === 'all' 
+                ? userOrders 
+                : userOrders.filter(order => order.status === status);
+            
+            document.getElementById('ordersList').innerHTML = renderOrders(filteredOrders);
+        };
+
+        // View Order Details
+        window.viewOrderDetails = function(orderId) {
+            const order = userOrders.find(o => o.id === orderId || o.id === orderId);
+            if (!order) return;
+
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modalContent');
             
             modalContent.innerHTML = `
                 <div class="modal-header">
-                    <h2><i class="fas fa-user-circle"></i> My Profile</h2>
+                    <h2><i class="fas fa-file-invoice"></i> Order Details</h2>
                     <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
                 </div>
-                <div class="modal-body" style="text-align: center;">
-                    <i class="fas fa-user-circle" style="font-size: 5rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                    <h3>${currentUser?.email || currentUser?.name || 'User'}</h3>
-                    <p style="color: var(--text-light); margin: 1rem 0;">Welcome to Moreen Petals!</p>
-                    <button class="btn btn-secondary" onclick="logout()" style="margin-top: 1rem;">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
+                <div class="modal-body">
+                    <div style="margin-bottom: 1.5rem;">
+                        <p><strong>Order ID:</strong> #${order.id?.substring(0, 8) || 'N/A'}</p>
+                        <p><strong>Order Date:</strong> ${new Date(order.orderDate).toLocaleString()}</p>
+                        <p><strong>Status:</strong> 
+                            <span class="order-status status-${order.status || 'pending'}">
+                                ${(order.status || 'pending').toUpperCase()}
+                            </span>
+                        </p>
+                    </div>
+
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Items</h3>
+                    ${order.items.map(item => `
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                            <div>
+                                <p style="font-weight: 600;">${item.name}</p>
+                                <p style="font-size: 0.9rem; color: var(--text-light);">Qty: ${item.quantity}</p>
+                            </div>
+                            <p style="font-weight: 600;">₹${(item.price * item.quantity).toFixed(2)}</p>
+                        </div>
+                    `).join('')}
+
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--primary);">
+                        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 600;">
+                            <span>Total:</span>
+                            <span style="color: var(--primary);">₹${order.total.toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <p><strong>Payment Status:</strong> ${order.paymentStatus || 'pending'}</p>
+                        <p><strong>Delivery Address:</strong> ${order.deliveryAddress || currentUser?.address || 'Not specified'}</p>
+                    </div>
                 </div>
             `;
             
             modal.classList.add('active');
-        }
+        };
+
+        // Cancel Order
+        window.cancelOrder = function(orderId) {
+            if (!confirm('Are you sure you want to cancel this order?')) return;
+            
+            // Update order status
+            const orderIndex = userOrders.findIndex(o => o.id === orderId || o.id === orderId);
+            if (orderIndex !== -1) {
+                userOrders[orderIndex].status = 'cancelled';
+                
+                // Update in localStorage
+                const localOrders = JSON.parse(localStorage.getItem('orders')) || [];
+                const localOrderIndex = localOrders.findIndex(o => o.id === orderId);
+                if (localOrderIndex !== -1) {
+                    localOrders[localOrderIndex].status = 'cancelled';
+                    localStorage.setItem('orders', JSON.stringify(localOrders));
+                }
+                
+                showToast('Order cancelled successfully', 'success');
+                showProfileDashboard(); // Refresh profile
+            }
+        };
 
         // Show Login Modal
         function showLoginModal() {
@@ -1496,7 +2106,9 @@
                     const userCredential = await auth.signInWithEmailAndPassword(email, password);
                     currentUser = userCredential.user;
                     closeModal();
+                    await loadUserOrders();
                     showToast('Login successful!', 'success');
+                    showProfileDashboard();
                 } catch (error) {
                     console.error('Login error:', error);
                     let errorMessage = 'Login failed. Please try again.';
@@ -1517,8 +2129,10 @@
                 if (user) {
                     currentUser = user;
                     localStorage.setItem('currentUser', JSON.stringify(user));
+                    await loadUserOrders();
                     closeModal();
                     showToast('Login successful! (Demo Mode)', 'success');
+                    showProfileDashboard();
                 } else {
                     showToast('Invalid email or password', 'error');
                 }
@@ -1564,6 +2178,7 @@
                     currentUser = userCredential.user;
                     closeModal();
                     showToast('Registration successful!', 'success');
+                    showProfileDashboard();
                 } catch (error) {
                     console.error('Registration error:', error);
                     let errorMessage = 'Registration failed. Please try again.';
@@ -1599,6 +2214,7 @@
                 
                 closeModal();
                 showToast('Registration successful! (Demo Mode)', 'success');
+                showProfileDashboard();
             }
         };
 
@@ -1613,6 +2229,7 @@
             }
             
             currentUser = null;
+            userOrders = [];
             localStorage.removeItem('currentUser');
             closeModal();
             showToast('Logged out successfully!', 'success');
@@ -1834,22 +2451,27 @@
                 userId: currentUser.uid || currentUser.id,
                 customerEmail: currentUser.email,
                 customerName: currentUser.name || currentUser.email,
+                deliveryAddress: currentUser.address || '',
                 items: cart,
                 total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
                 status: 'pending',
-                orderDate: new Date().toISOString(),
-                paymentStatus: 'pending'
+                paymentStatus: 'pending',
+                orderDate: new Date().toISOString()
             };
 
             if (isFirebaseAvailable && db) {
                 // Firebase order
                 try {
-                    await db.collection("orders").add(orderData);
+                    const docRef = await db.collection("orders").add(orderData);
+                    orderData.id = docRef.id;
                     
                     // Clear cart
                     cart = [];
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
+                    
+                    // Add to user orders
+                    userOrders.unshift(orderData);
                     
                     closeModal();
                     showToast('Order placed successfully! The seller will contact you soon.', 'success');
@@ -1863,6 +2485,9 @@
                 orderData.id = 'order_' + Date.now();
                 orders.push(orderData);
                 localStorage.setItem('orders', JSON.stringify(orders));
+                
+                // Add to user orders
+                userOrders.unshift(orderData);
                 
                 // Clear cart
                 cart = [];
